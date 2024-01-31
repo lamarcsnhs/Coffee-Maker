@@ -38,7 +38,7 @@
 	},
 	"dark_roast": {
 		"name"  : "Dark",
-		"pin"   : 6,
+		"pin"   : 7,
 		"value" : "Dark",
 		"stage" : 0
 	}
