@@ -220,7 +220,7 @@ class Bartender(MenuDelegate):
         self.running = False
 
 
-    #WTF does this code do
+ 
     def run(self):
         self.startInterrupts()
         # main loop
