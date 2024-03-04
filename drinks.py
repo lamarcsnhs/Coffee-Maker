@@ -6,7 +6,7 @@ drink_list = [
 			"Froth":80,
 			"Coffee Pot":200,
 			"Milk": 60,
-            "Coffee": 10
+            "Coffee": 15
 		}
 	}, {
     	"name": "test",
@@ -20,7 +20,7 @@ drink_list = [
 		"ground": "Medium", # change this if needed
         "ingredients":{
     		"Coffee Pot":250,
-            "Coffee": 6
+            "Coffee": 15
 		}
 	}, {
 		"name": "clean",
@@ -36,7 +36,7 @@ drink_list = [
 			"Coffee Pot": 200,
             "Froth":80,
             "Almond": 60,
-            "Coffee": 10
+            "Coffee": 15
 		} 
 	}, {
 		"name": "dark alm",
@@ -45,7 +45,7 @@ drink_list = [
 			"Coffee Pot": 200,
             "Froth":80,
             "Almond": 60,
-            "Dark": 10
+            "Dark": 15
 		} 
 	}, {
 		"name": "dark lat",
@@ -54,7 +54,7 @@ drink_list = [
 			"Froth":80,
 			"Coffee Pot":200,
 			"Milk": 60,
-            "Dark": 10
+            "Dark": 15
 		}
 	}, {
 		"name": "coff clea",

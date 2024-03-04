@@ -13,9 +13,9 @@ def down():
 
     GPIO.setup(pin,GPIO.OUT)
     GPIO.output(pin,GPIO.HIGH)
-    time.sleep(5)
+    time.sleep(4)
     GPIO.output(pin,GPIO.LOW)
-    print("is dorian's code the right one?")
+    #print("is dorian's code the right one?")
 
 def up():
     pin = 25
@@ -25,7 +25,7 @@ def up():
     GPIO.setmode(GPIO.BCM)
     GPIO.setwarnings(False)
     GPIO.setup(pin,GPIO.OUT)
-    print("checking dorian's code")
+    #print("checking dorian's code")
     #time.sleep(60)
     GPIO.output(pin,GPIO.HIGH)
     time.sleep(1.9)

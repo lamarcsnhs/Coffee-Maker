@@ -11,7 +11,6 @@ import Arm
 import Pully
 
 
-
 from menu import MenuItem, Menu, Back, MenuContext, MenuDelegate
 from drinks import drink_list, drink_options
 max_stages = 3
@@ -242,7 +241,7 @@ class Bartender(MenuDelegate):
 
 orders = []
 
-
+ 
 def CheckForOrder():
     ordered = True
     thing = g.checkMail()
