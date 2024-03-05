@@ -2,12 +2,14 @@ import RPi.GPIO as GPIO
 import time   
 
 # Front sensor
-trigger_pin = 18
-echo_pin = 12
+trigger_pin_1 = 18
+echo_pin_1 = 12
 
-GPIO.setmode(GPIO.BOARD)
-GPIO.setup(echo_pin, GPIO.IN)
-GPIO.setup(trigger_pin, GPIO.OUT)
+# Inits GPIO unit for sensor
+def setGPIO(trg, echo):
+    GPIO.setmode(GPIO.BOARD)
+    GPIO.setup(echo, GPIO.IN)
+    GPIO.setup(trg, GPIO.OUT)
 
 def getDistance(trg, echo): # trigger/echo pins of sensor
     # Sends a pulse to trigger the sensor
@@ -32,9 +34,11 @@ def getDistance(trg, echo): # trigger/echo pins of sensor
 
     return distance
 
+setGPIO(trigger_pin_1, echo_pin_1)
+
 try:
     while True:
-        distance = getDistance(trigger_pin, echo_pin)
+        distance = getDistance(trigger_pin_1, echo_pin_1)
         print("Distance:", distance, "cm")
 except KeyboardInterrupt:
     GPIO.cleanup()
