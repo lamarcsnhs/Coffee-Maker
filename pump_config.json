@@ -41,12 +41,5 @@
 		"pin"   : 7,
 		"value" : "Dark",
 		"stage" : 0
-	},
-	"sensor"	: {
-		"name"  : "Sensor",
-		"pin"	: 18,
-		"value" : "Sensor",
-		"stage" : 2
 	}
-
 }
