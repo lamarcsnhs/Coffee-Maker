@@ -292,8 +292,6 @@ if __name__ == "__main__":
     d = []
     for drink in drink_list:
         d.append(drink['name'])  
-    print(d)
-    print('Which drink are you making')
 
     gettingOrders = threading.Thread(target=orderThread)
     gettingOrders.start()

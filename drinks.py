@@ -57,6 +57,15 @@ drink_list = [
             "Dark": 15
 		}
 	}, {
+		"name": "dark bla",
+        "ground": "Medium", # change this if needed
+		"ingredients": {
+			
+			"Coffee Pot":250,
+            "Dark": 15
+		}
+	},
+        {
 		"name": "coff clea",
         "ingredients":{
     		"Coffee Pot":250		
