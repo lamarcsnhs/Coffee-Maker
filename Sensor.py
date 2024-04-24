@@ -5,6 +5,9 @@ import time
 trigger_pin_1 = 18
 echo_pin_2 = 12
 
+# Constant
+SPEED_OF_SOUND_CM_S = 34416 # speed of sound constant at 71f, just took the avg for best precision
+
 # Inits GPIO unit for sensor
 def initGPIO(trg, echo):
     GPIO.setmode(GPIO.BOARD)
@@ -29,7 +32,7 @@ def getDistance(trg, echo): # trigger/echo pins of sensor
 
     # Calculates pulse duration to get distance
     pulse_duration = pulse_end - pulse_start
-    distance = pulse_duration * 17150 # speed of sound = 17150 cm/s
+    distance = pulse_duration * SPEED_OF_SOUND_CM_S
     distance = round(distance, 2)
 
     return distance
