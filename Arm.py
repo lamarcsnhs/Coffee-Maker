@@ -18,7 +18,7 @@ def rotate(stage):
     GPIO.output(pin,GPIO.HIGH)
     time.sleep(.615)
     GPIO.output(pin,GPIO.LOW)
-    if(stage ==2):
+    if(stage ==4):
         GPIO.output(pin,GPIO.HIGH)
         time.sleep(.275)
         GPIO.output(pin,GPIO.LOW)
@@ -36,3 +36,4 @@ def reset():
     GPIO.output(pin,GPIO.HIGH)
     time.sleep(.675*2)
     GPIO.output(pin,GPIO.LOW)
+

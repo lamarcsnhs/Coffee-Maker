@@ -1,5 +1,5 @@
 import RPi.GPIO as GPIO
-import time   
+import time
 
 # Front sensor
 trigger_pin_1 = 18
@@ -30,7 +30,7 @@ def getDistance(trg, echo): # trigger/echo pins of sensor
     # Calculates pulse duration to get distance
     pulse_duration = pulse_end - pulse_start
     distance = pulse_duration * 17150 # speed of sound = 17150 cm/s
-    distance = round(distance, 2)
+    distance = round(distance, 2) # rounded to x.xx cm
 
     return distance
 

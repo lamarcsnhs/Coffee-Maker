@@ -13,7 +13,7 @@ def down():
 
     GPIO.setup(pin,GPIO.OUT)
     GPIO.output(pin,GPIO.HIGH)
-    time.sleep(4)
+    time.sleep(5)
     GPIO.output(pin,GPIO.LOW)
     #print("is dorian's code the right one?")
 
@@ -57,3 +57,5 @@ def reset():
     GPIO.output(pin,GPIO.HIGH)
     time.sleep(10)
     GPIO.output(pin,GPIO.LOW)
+
+reset()

@@ -15,20 +15,20 @@
 	"pump_3": {
 		"name": "Pump 3",
 		"pin": 22	, 
-		"value": "Water",
-		"stage": 1
+		"value": "Sweetener",
+		"stage": 2
 	},
 	"pump_4": {
 		"name": "Pump 4",
 		"pin": 21,
 		"value": "Coffee Pot",
-		"stage": 3
+		"stage": 4
 	},
 	"Frother": {
 		"name": "Frother",
 		"pin": 23,
 		"value": "Froth",
-		"stage": 2
+		"stage": 3
 	},
 	"medium_roast": {
 		"name"  : "Medium",

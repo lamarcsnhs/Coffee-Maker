@@ -146,7 +146,10 @@ class Bartender(MenuDelegate):
 
 
     def makeDrink(self, ingredients, stage):
-        # cancel any button presses while the drink is being made
+
+        print(f"makeDrink called with stage {stage}")
+    # Rest of your code...
+# cancel any button presses while the drink is being made
         # self.stopInterrupts()
         #The drink parameter is a string that represents the name of the drink being made 
         #ingredients is a dictionary where the keys are strings representing the names of the ingredients and the values are floats representing the amount of each ingredient required to make the drink.
@@ -305,24 +308,32 @@ if __name__ == "__main__":
             order = orders[0]
             orders.pop(0)
             Bartender.order_name = order
-            order = bartender.ChooseDrink(order)
-            #for stage in range(max_stages):
-            for stage in range(0,4):
-                bartender.makeDrink(order, stage)
-                if not stage == 4 and not stage == 3 and not stage==0:
+            # Unpack the tuple into drink_name and add_sweetener
+            drink_name, add_sweetener = order
+            ingredients = bartender.ChooseDrink(drink_name)
+            if ingredients is None:
+                print(f"Drink '{drink_name}' not found.")
+                continue  # Skip to the next iteration
+            if add_sweetener:
+                sweetener_amount = {'Sweetener': 10}  # Adjust as necessary
+                ingredients.update(sweetener_amount)
+            # Proceed to make the drink
+            for stage in range(0, 5):
+                print(f"Processing stage {stage}")
+                try:
+                    bartender.makeDrink(ingredients, stage)
+                except Exception as e:
+                    print(f"Exception occurred during makeDrink at stage {stage}: {e}")
+                if not stage == 1 and not stage == 2 and not stage == 0:
+                    print(f"Rotating arm at stage {stage}")
                     Arm.rotate(stage)
                 print("stage " + str(stage))
             Arm.reset()
-                
-                
 
-
-            drinkcount += 1
-        #if drinkcount == drinkLimit:
-        #   break
         time.sleep(1)
 
-    gettingOrders.join()
+                
+
 
 
     #test2 = input()
@@ -339,7 +350,6 @@ if __name__ == "__main__":
     #WTF Does this code do?
     #bartender.buildMenu(drink_list, drink_options)
     #bartender.run()
-
 
 
 
