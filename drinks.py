@@ -65,11 +65,24 @@ drink_list = [
             "Dark": 15
 		}
 	},
+      {
+        "name": "PSL",
+        "ground": "Medium",
+        "ingredients": {
+			"Coffee Pot":200,
+            "Milk": 60,                 # Amount of milk
+            "Froth": 80,                # Frothing
+            "Sweetener": 10 ,  
+			"Coffee": 15
+          # 20 units of sweetener
+        }}
+        ,
         {
 		"name": "coff clea",
         "ingredients":{
     		"Coffee Pot":250		
 	}
+    
 	}
     
 ]

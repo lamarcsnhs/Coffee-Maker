@@ -314,7 +314,7 @@ if __name__ == "__main__":
             if ingredients is None:
                 print(f"Drink '{drink_name}' not found.")
                 continue  # Skip to the next iteration
-            if add_sweetener:
+            if add_sweetener and drink_name != "PSL":
                 sweetener_amount = {'Sweetener': 10}  # Adjust as necessary
                 ingredients.update(sweetener_amount)
             # Proceed to make the drink
@@ -324,11 +324,14 @@ if __name__ == "__main__":
                     bartender.makeDrink(ingredients, stage)
                 except Exception as e:
                     print(f"Exception occurred during makeDrink at stage {stage}: {e}")
-                if not stage == 1 and not stage == 2 and not stage == 0:
+                    # Handle the exception as needed
+                # Call Arm.rotate(stage) based on your desired conditions
+                if stage == 2 or stage == 3:
                     print(f"Rotating arm at stage {stage}")
                     Arm.rotate(stage)
                 print("stage " + str(stage))
             Arm.reset()
+
 
         time.sleep(1)
 
