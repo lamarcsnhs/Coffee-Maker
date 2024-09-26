@@ -251,7 +251,7 @@ def CheckForOrder():
     order = thing[0].lower()
     print(order)
     order = o.CheckTextVaildity(order)
-    if not order == None:
+    if order is not None and order[0] is not None:
         print('This is the order')
         print(order)
         return order
