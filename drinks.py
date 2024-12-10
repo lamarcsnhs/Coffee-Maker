@@ -4,7 +4,7 @@ drink_list = [
         "ground": "Medium", # change this if needed
 		"ingredients": {
 			"Froth":80,
-			"Coffee Pot":200,
+			"Coffee Pot":220,
 			"Milk": 60,
             "Coffee": 15
 		}
@@ -33,7 +33,7 @@ drink_list = [
 		"name": "al latte",
 		"ground": "Medium", # change this if needed
         "ingredients":{
-			"Coffee Pot": 200,
+			"Coffee Pot": 220,
             "Froth":80,
             "Almond": 60,
             "Coffee": 15
@@ -42,7 +42,7 @@ drink_list = [
 		"name": "dark alm",
 		"ground": "Medium", # change this if needed
         "ingredients":{
-			"Coffee Pot": 200,
+			"Coffee Pot": 220,
             "Froth":80,
             "Almond": 60,
             "Dark": 15
@@ -52,7 +52,7 @@ drink_list = [
         "ground": "Medium", # change this if needed
 		"ingredients": {
 			"Froth":80,
-			"Coffee Pot":200,
+			"Coffee Pot":220,
 			"Milk": 60,
             "Dark": 15
 		}
@@ -69,7 +69,7 @@ drink_list = [
         "name": "PSL",
         "ground": "Medium",
         "ingredients": {
-			"Coffee Pot":200,
+			"Coffee Pot":220,
             "Milk": 60,                 # Amount of milk
             "Froth": 80,                # Frothing
             "Sweetener": 10 ,  
