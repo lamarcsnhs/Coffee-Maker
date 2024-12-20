@@ -69,7 +69,7 @@ drink_list = [
         "name": "PSL",
         "ground": "Medium",
         "ingredients": {
-			"Coffee Pot":220,
+			"Coffee Pot":250,
             "Milk": 60,                 # Amount of milk
             "Froth": 80,                # Frothing
             "Sweetener": 10 ,  

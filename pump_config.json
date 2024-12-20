@@ -41,5 +41,24 @@
 		"pin"   : 7,
 		"value" : "Dark",
 		"stage" : 0
+	},
+	"cleaner_solenoid_creamer": {
+		"name"  : "Solenoid Cleaning Creamer",
+		"pin"   : 5,
+		"value" : "solenoidCreamer",
+		"stage" : 1
+	},
+	"cleaner_solenoid_almond": {
+		"name"  : "Solenoid Cleaning Almond",
+		"pin"   : 19,
+		"value" : "solenoidAlmond",
+		"stage" : 1
+	},
+	"cleaner_solenoid_sweetener": {
+		"name"  : "Solenoid Cleaning Sweetener",
+		"pin"   : 26,
+		"value" : "solenoidSweetener",
+		"stage" : 1
 	}
+
 }
