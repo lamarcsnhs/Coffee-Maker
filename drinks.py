@@ -16,6 +16,17 @@ drink_list = [
             "Froth": 5
 		}
 	}, {
+        "name": "clean",
+        "ground": "Medium", # change this if needed
+        "ingredients":{
+            "solenoidCreamer":1,
+			"Milk": 80,
+            "solenoidAlmond":1,
+			"Almond": 80,
+            "solenoidSweetener":1,
+            "Sweetener":80
+		}
+	}, {
     	"name": "black",
 		"ground": "Medium", # change this if needed
         "ingredients":{

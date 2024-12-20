@@ -3,26 +3,30 @@
 		"name": "Pump 1",
 		"pin": 17, 
 		"value": "Milk",
-		"stage": 1
+		"stage": 1,
+		"type": "pump"
 	},
 	"pump_2": {
 		"name": "Pump 2",
 		"pin": 27, 
 		"value": "Almond",
-		"stage": 1
+		"stage": 1,
+		"type": "pump"
 
 	},
 	"pump_3": {
 		"name": "Pump 3",
 		"pin": 22	, 
 		"value": "Sweetener",
-		"stage": 2
+		"stage": 2,
+		"type": "pump"
 	},
 	"pump_4": {
 		"name": "Pump 4",
 		"pin": 21,
 		"value": "Coffee Pot",
-		"stage": 4
+		"stage": 4,
+		"type": "pump"
 	},
 	"Frother": {
 		"name": "Frother",
@@ -46,19 +50,22 @@
 		"name"  : "Solenoid Cleaning Creamer",
 		"pin"   : 5,
 		"value" : "solenoidCreamer",
-		"stage" : 1
+		"stage" : 1,
+		"type": "solenoid"
 	},
 	"cleaner_solenoid_almond": {
 		"name"  : "Solenoid Cleaning Almond",
 		"pin"   : 19,
 		"value" : "solenoidAlmond",
-		"stage" : 1
+		"stage" : 1,
+		"type": "solenoid"
 	},
 	"cleaner_solenoid_sweetener": {
 		"name"  : "Solenoid Cleaning Sweetener",
 		"pin"   : 26,
 		"value" : "solenoidSweetener",
-		"stage" : 1
+		"stage" : 1,
+		"type": "solenoid"
 	}
 
 }

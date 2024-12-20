@@ -87,39 +87,58 @@ class Bartender(MenuDelegate):
         # self.startInterrupts()
         self.running = False      
 
-    def clean(self):
-        waitTime = 60
-        pumpThreads = []
+    # def clean(self):
+    #     waitTime = 60
+    #     pumpThreads = []
 
-        # cancel any button presses while the drink is being made
-        # self.stopInterrupts()
+    #     # cancel any button presses while the drink is being made
+    #     # self.stopInterrupts()
+    #     self.running = True
+
+    #     for pump in self.pump_configuration.keys():
+    #         pump_t = threading.Thread(target=self.pour, args=(self.pump_configuration[pump]["pin"], waitTime))
+    #         if self.pump_configuration[pump]["pin"]==21 or self.pump_configuration[pump]["pin"]==23:
+    #             continue
+    #         pumpThreads.append(pump_t)
+
+    #     # start the pump threads
+    #     for thread in pumpThreads:
+    #         thread.start()
+
+    #     # start the progress bar
+    #     #self.progressBar(waitTime)
+
+    #     # wait for threads to finish
+    #     for thread in pumpThreads:
+    #         thread.join()
+
+    #     # show the main menu
+    #     #self.menuContext.showMenu()
+
+    #     # sleep for a couple seconds to make sure the interrupts don't get triggered
+    #     time.sleep(2)
+
+    #     # reenable interrupts
+    #     # self.startInterrupts()
+    #     self.running = False
+    def clean(self, ingredients, stage):
         self.running = True
 
-        for pump in self.pump_configuration.keys():
-            pump_t = threading.Thread(target=self.pour, args=(self.pump_configuration[pump]["pin"], waitTime))
-            if self.pump_configuration[pump]["pin"]==21 or self.pump_configuration[pump]["pin"]==23:
-                continue
-            pumpThreads.append(pump_t)
+        maxTime = 0
+        #pumpThreads = []
 
-        # start the pump threads
-        for thread in pumpThreads:
-            thread.start()
-
-        # start the progress bar
-        #self.progressBar(waitTime)
-
-        # wait for threads to finish
-        for thread in pumpThreads:
-            thread.join()
-
-        # show the main menu
-        #self.menuContext.showMenu()
-
-        # sleep for a couple seconds to make sure the interrupts don't get triggered
-        time.sleep(2)
-
-        # reenable interrupts
-        # self.startInterrupts()
+        for ing in ingredients.keys():
+            for stuff in self.pump_configuration.keys():
+                if ing == self.pump_configuration[stuff]["type"]:
+                    if stuff == "solenoid":
+                        solenoidInUse = stuff.pump_configuration["pin"]
+                        GPIO.output(solenoidInUse, GPIO.LOW)
+                    elif stuff == "pump":
+                        waitTime = ingredients[ing] * FLOW_RATE
+                        if (waitTime > maxTime):
+                            maxTime = waitTime
+                            self.pour(self.pump_configuration[stuff]["pin"], waitTime)
+                            GPIO.output(solenoidInUse, GPIO.HIGH)
         self.running = False
 
     def displayMenuItem(self, menuItem):
@@ -310,27 +329,32 @@ if __name__ == "__main__":
             Bartender.order_name = order
             # Unpack the tuple into drink_name and add_sweetener
             drink_name, add_sweetener = order
-            ingredients = bartender.ChooseDrink(drink_name)
-            if ingredients is None:
-                print(f"Drink '{drink_name}' not found.")
-                continue  # Skip to the next iteration
-            if add_sweetener and drink_name != "PSL":
-                sweetener_amount = {'Sweetener': 10}  # Adjust as necessary
-                ingredients.update(sweetener_amount)
-            # Proceed to make the drink
-            for stage in range(0, 5):
-                print(f"Processing stage {stage}")
-                try:
-                    bartender.makeDrink(ingredients, stage)
-                except Exception as e:
-                    print(f"Exception occurred during makeDrink at stage {stage}: {e}")
-                    # Handle the exception as needed
-                # Call Arm.rotate(stage) based on your desired conditions
-                if stage == 2 or stage == 3:
-                    print(f"Rotating arm at stage {stage}")
-                    Arm.rotate(stage)
-                print("stage " + str(stage))
-            Arm.reset()
+
+            if order == "clean":
+                bartender.clean()
+                Arm.reset()
+            else:
+                ingredients = bartender.ChooseDrink(drink_name)
+                if ingredients is None:
+                    print(f"Drink '{drink_name}' not found.")
+                    continue  # Skip to the next iteration
+                if add_sweetener and drink_name != "PSL":
+                    sweetener_amount = {'Sweetener': 10}  # Adjust as necessary
+                    ingredients.update(sweetener_amount)
+                # Proceed to make the drink
+                for stage in range(0, 5):
+                    print(f"Processing stage {stage}")
+                    try:
+                        bartender.makeDrink(ingredients, stage)
+                    except Exception as e:
+                        print(f"Exception occurred during makeDrink at stage {stage}: {e}")
+                        # Handle the exception as needed
+                    # Call Arm.rotate(stage) based on your desired conditions
+                    if stage == 2 or stage == 3:
+                        print(f"Rotating arm at stage {stage}")
+                        Arm.rotate(stage)
+                    print("stage " + str(stage))
+                Arm.reset()
 
 
         time.sleep(1)
