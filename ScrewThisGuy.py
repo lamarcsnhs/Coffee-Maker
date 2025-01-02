@@ -9,6 +9,7 @@ import OrderParser as o
 import grounds
 import Arm
 import Pully
+import Sensor
 
 
 from menu import MenuItem, Menu, Back, MenuContext, MenuDelegate
@@ -138,7 +139,7 @@ class Bartender(MenuDelegate):
                         if (waitTime > maxTime):
                             maxTime = waitTime
                             self.pour(self.pump_configuration[stuff]["pin"], waitTime)
-                            GPIO.output(solenoidInUse, GPIO.HIGH)
+                        GPIO.output(solenoidInUse, GPIO.HIGH)
         self.running = False
 
     def displayMenuItem(self, menuItem):
@@ -323,38 +324,40 @@ if __name__ == "__main__":
     while True:
         print(orders)
         if len(orders) > 0:
-            stage = 1
-            order = orders[0]
-            orders.pop(0)
-            Bartender.order_name = order
-            # Unpack the tuple into drink_name and add_sweetener
-            drink_name, add_sweetener = order
+            if (Sensor.doesCupExist(4)):
+                stage = 1
+                order = orders[0]
+                orders.pop(0)
+                Bartender.order_name = order
+                # Unpack the tuple into drink_name and add_sweetener
+                drink_name, add_sweetener = order
 
-            if order == "clean":
-                bartender.clean()
-                Arm.reset()
-            else:
-                ingredients = bartender.ChooseDrink(drink_name)
-                if ingredients is None:
-                    print(f"Drink '{drink_name}' not found.")
-                    continue  # Skip to the next iteration
-                if add_sweetener and drink_name != "PSL":
-                    sweetener_amount = {'Sweetener': 10}  # Adjust as necessary
-                    ingredients.update(sweetener_amount)
-                # Proceed to make the drink
-                for stage in range(0, 5):
-                    print(f"Processing stage {stage}")
-                    try:
-                        bartender.makeDrink(ingredients, stage)
-                    except Exception as e:
-                        print(f"Exception occurred during makeDrink at stage {stage}: {e}")
-                        # Handle the exception as needed
-                    # Call Arm.rotate(stage) based on your desired conditions
-                    if stage == 2 or stage == 3:
-                        print(f"Rotating arm at stage {stage}")
-                        Arm.rotate(stage)
-                    print("stage " + str(stage))
-                Arm.reset()
+                if order == "clean":
+                    bartender.clean()
+                    Arm.reset()
+                else:
+                    # make sure the solenoids are off with a quick for loop here 
+                    ingredients = bartender.ChooseDrink(drink_name)
+                    if ingredients is None:
+                        print(f"Drink '{drink_name}' not found.")
+                        continue  # Skip to the next iteration
+                    if add_sweetener and drink_name != "PSL":
+                        sweetener_amount = {'Sweetener': 10}  # Adjust as necessary
+                        ingredients.update(sweetener_amount)
+                    # Proceed to make the drink
+                    for stage in range(0, 5):
+                        print(f"Processing stage {stage}")
+                        try:
+                            bartender.makeDrink(ingredients, stage)
+                        except Exception as e:
+                            print(f"Exception occurred during makeDrink at stage {stage}: {e}")
+                            # Handle the exception as needed
+                        # Call Arm.rotate(stage) based on your desired conditions
+                        if stage == 2 or stage == 3:
+                            print(f"Rotating arm at stage {stage}")
+                            Arm.rotate(stage)
+                        print("stage " + str(stage))
+                    Arm.reset()
 
 
         time.sleep(1)

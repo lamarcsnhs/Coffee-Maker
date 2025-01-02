@@ -1,9 +1,11 @@
 import RPi.GPIO as GPIO
 import time
 
+# distanceToCheck = 4
+
 # Front sensor
-trigger_pin_1 = 18
-echo_pin_2 = 12
+trg1 = 18
+echo1 = 12
 
 # Inits GPIO unit for sensor
 def initGPIO(trg, echo):
@@ -11,35 +13,31 @@ def initGPIO(trg, echo):
     GPIO.setup(echo, GPIO.IN)
     GPIO.setup(trg, GPIO.OUT)
 
-def getDistance(trg, echo): # trigger/echo pins of sensor
-    # Sends a pulse to trigger the sensor
-    GPIO.output(trg, True)
-    time.sleep(0.00001)
-    GPIO.output(trg, False)
+def doesCupExist(distanceToCheck):
+    initGPIO(trg1, echo1)
 
-    # Waits for the echo response
-    pulse_start = time.time()
-    pulse_end = time.time()
-
-    while GPIO.input(echo) == 0:
+    GPIO.output(trg1, GPIO.LOW)
+    time.sleep(0.1)
+    
+    GPIO.output(trg1, GPIO.HIGH)
+    time.sleep(0.00001) 
+    GPIO.output(trg1, GPIO.LOW)
+    
+    while GPIO.input(echo1) == GPIO.LOW:
         pulse_start = time.time()
 
-    while GPIO.input(echo) == 1:
+    while GPIO.input(echo1) == GPIO.HIGH:
         pulse_end = time.time()
 
-    # Calculates pulse duration to get distance
     pulse_duration = pulse_end - pulse_start
-    distance = pulse_duration * 17150 # speed of sound = 17150 cm/s
-    distance = round(distance, 2) # rounded to x.xx cm
+    distance = pulse_duration * 17150 
+    
+    #print(distance)
+    return distance <= distanceToCheck
 
-    return distance
-
-# For front sensor
-initGPIO(trigger_pin_1, echo_pin_2)
-
-try:
-    while True:
-        distance = getDistance(trigger_pin_1, echo_pin_2)
-        print("Distance:", distance, "cm")
-except KeyboardInterrupt:
-    GPIO.cleanup()
+# try:
+#     while True:
+#         distance = doesCupExist(4)
+#         print("Distance:", distance, "cm")
+# except KeyboardInterrupt:
+#     GPIO.cleanup()
