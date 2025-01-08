@@ -9,7 +9,7 @@ import OrderParser as o
 import grounds
 import Arm
 import Pully
-import Sensor
+# import Sensor
 
 
 from menu import MenuItem, Menu, Back, MenuContext, MenuDelegate
@@ -324,7 +324,7 @@ if __name__ == "__main__":
     while True:
         print(orders)
         if len(orders) > 0:
-            if (Sensor.doesCupExist(4)):
+            # if (Sensor.doesCupExist(4)):
                 stage = 1
                 order = orders[0]
                 orders.pop(0)

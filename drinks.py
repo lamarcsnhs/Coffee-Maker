@@ -21,10 +21,10 @@ drink_list = [
         "ingredients":{
             "solenoidCreamer":1,
 			"Milk": 80,
-            "solenoidAlmond":1,
-			"Almond": 80,
-            "solenoidSweetener":1,
-            "Sweetener":80
+            # "solenoidAlmond":1,
+			# "Almond": 80,
+            # "solenoidSweetener":1,
+            # "Sweetener":80
 		}
 	}, {
     	"name": "black",
