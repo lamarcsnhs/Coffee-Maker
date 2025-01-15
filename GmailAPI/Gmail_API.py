@@ -12,6 +12,8 @@ from itertools import chain
 import webbrowser
 import os
 import time
+import select
+import sys
 from exchangelib import DELEGATE, Account, Credentials, Message, Mailbox, HTMLBody
 import re
 
@@ -107,6 +109,20 @@ def send_email_gmail(to, subject, body):
         print(f"Email sent to {to}")
     except Exception as e:
         print(f"Error sending email: {str(e)}")
+
+
+def checkForCMDInput():
+    message = ""
+    while True:
+        time.sleep(15)
+        ready, _, _ = select.select([sys.stdin], [], [], 0.1)  # Timeout is 0.1 seconds
+        if ready:
+            message = sys.stdin.readline().strip()
+            if message: 
+                print(f"Command Line Order: {message}")
+                return message
+        
+        time.sleep(0.1)
 
 # Modify the checkMail function as needed for Gmail, but keep the IMAP connection logic.
 

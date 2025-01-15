@@ -268,6 +268,7 @@ orders = []
 def CheckForOrder():
     ordered = True
     thing = g.checkMail()
+    thing.append(g.checkForCMDInput())
     order = thing[0].lower()
     print(order)
     order = o.CheckTextVaildity(order)
